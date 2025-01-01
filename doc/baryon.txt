@@ -1,0 +1,6 @@
+A baryon consists of two layers:
+    * An outer layer of metadata
+    * An inner layer which is the actual semantic contents of the object
+
+The inner layer is addressed by reference rather than being directly part of the top-level baryon object.
+
