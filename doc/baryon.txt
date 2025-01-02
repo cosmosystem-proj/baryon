@@ -4,3 +4,10 @@ A baryon consists of two layers:
 
 The inner layer is addressed by reference rather than being directly part of the top-level baryon object.
 
+The metadata includes:
+    * A 64-bit version field.  The only reason the version field is 64 bits is
+    because every other member of the field is 64 bits or a multiple thereof, so
+    for alignment purposes it's going to be padded to 64 bits/8 bytes anyway.
+    * An ID (256-bit) to uniquely identify the baryon internally.  This ID is
+    unique to the instance of the baryon, and is represented internally as an
+    array of four sequential 64-bit unsigned integers.

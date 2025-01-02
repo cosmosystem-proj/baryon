@@ -8,6 +8,12 @@
  * See file LICENSE for full licensing informatin.
  */
 
+#include <quanta/include/types.h>
+
+typedef struct baryon;
+
+typedef baryon *baryon_ref;
+
 typedef struct baryon {
-  __UINT64_TYPE__ id;
+  uint64_t id;
 } baryon;
