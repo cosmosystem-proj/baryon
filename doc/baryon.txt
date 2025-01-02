@@ -1,13 +1,41 @@
+# Creator: Kurt M. Weber
+# Created on: 2024-12-27
+#
+# This file is part of baryon, a component of the Cosmoverse.
+# Licensed under Hippocratic License with clauses:
+# HL3-CL-ECO-EXTR-FFD-MEDIA-MY-SUP-SV-TAL-USTA-XUAR
+# See file LICENSE for full licensing informatin.
+
 A baryon consists of two layers:
     * An outer layer of metadata
     * An inner layer which is the actual semantic contents of the object
 
-The inner layer is addressed by reference rather than being directly part of the top-level baryon object.
+The inner layer is addressed by reference rather than being directly part of the
+top-level baryon object.
 
 The metadata includes:
     * A 64-bit version field.  The only reason the version field is 64 bits is
-    because every other member of the field is 64 bits or a multiple thereof, so
-    for alignment purposes it's going to be padded to 64 bits/8 bytes anyway.
+      because every other member of the field is 64 bits or a multiple thereof,
+      so for alignment purposes it's going to be padded to 64 bits/8 bytes
+      anyway.  At present, 1 is the only recognized version number.
     * An ID (256-bit) to uniquely identify the baryon internally.  This ID is
-    unique to the instance of the baryon, and is represented internally as an
-    array of four sequential 64-bit unsigned integers.
+      unique to the instance of the baryon, and is represented internally as an
+      array of four sequential 64-bit unsigned integers.
+    * A reference to the inner layer.  The exact form this takes varies based on
+      environment; it could be a pointer, a numerical identifier, or the direct
+      nesting of the inner layer.
+
+The full layout of the inner layer is of course content-dependent, but it begins
+with the following common initial elements, always of the specified size and in
+the specified order, so that implementations can obtain the information they
+need to process the remainder:
+    * A 256-bit type ID, represented as an array of four sequential 64-bit
+      unsigned integers.
+    * A 64-bit type version number, defined separately for each distinct type.
+    * A 64-bit length field, specifying the size (in bytes) of the entire inner
+      layer, including these common initial elements.
+    * A 64-bit string length field, specifying the size (in bytes) of the
+      subsequent Object Descriptor String.
+    * The Object Descriptor String, a null-terminated string of bytes describing
+      the remainder of the fields in the inner-layer object.  See ods.txt for a
+      full explanation.

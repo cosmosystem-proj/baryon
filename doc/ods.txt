@@ -1,0 +1,41 @@
+# Creator: Kurt M. Weber
+# Created on: 2025-01-01
+#
+# This file is part of baryon, a component of the Cosmoverse.
+# Licensed under Hippocratic License with clauses:
+# HL3-CL-ECO-EXTR-FFD-MEDIA-MY-SUP-SV-TAL-USTA-XUAR
+# See file LICENSE for full licensing informatin.
+
+The Object Descriptor String is an element of a baryon that describes the layout
+of the semantic content of the baryon's inner layer.  Its purpose is to enable
+implementations to have some basic understanding of the contents of the object
+so that operations can be performed on those contents even without having full
+capability to process them, in cases where that may be a useful thing to do.
+
+An Object Descriptor String consists of a series of variable-length sequences of
+digits and alphanumeric characters.  Each entry in the series represents one of
+the fields in the baryon's inner layer, and is constructed as follows:
+    * The length in bits of the field, represented as a decimal number
+    * A field type identifier (see below), two characters long
+    * The length in characters of the field name
+    * The field name
+
+Field type identifiers are as possible, and provide information about the data
+type:
+    * "ui" - an unsigned integer
+    * "si" - a signed integer
+    * "ch" - a character type
+    * "st" - a string type
+    * "fp" - a floating point type
+
+For example, the following C field definition:
+
+    uint16_t ExampleField;
+
+would be represented with the following ODS:
+
+    "16ui12ExampleField"
+
+Note that the length of the field name does not include any null terminator.
+
+There are no separators between entries in the object descriptor string.
