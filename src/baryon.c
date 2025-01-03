@@ -7,3 +7,5 @@
  * HL3-CL-ECO-EXTR-FFD-MEDIA-MY-SUP-SV-TAL-USTA-XUAR
  * See file LICENSE for full licensing informatin.
  */
+
+void baryon_init() { return; }
