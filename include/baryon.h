@@ -28,8 +28,8 @@ typedef struct baryon {
 #define BARYON_GENERIC_FIELDS                                                  \
   uint64_t version;                                                            \
   qword_t id[4];                                                               \
-  uint64_t length;                                                             \
-  uint64_t ods_length;                                                         \
+  size_t length;                                                               \
+  size_t ods_length;                                                           \
   const char *ods;
 
 typedef struct baryon_generic_common {
