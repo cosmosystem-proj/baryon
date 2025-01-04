@@ -8,12 +8,32 @@
  * See file LICENSE for full licensing informatin.
  */
 
+#ifndef _BARYON_H
+#define _BARYON_H
+
 #include <quanta/include/types.h>
 
 typedef struct baryon;
 
 typedef baryon *baryon_ref;
 
+typedef void *baryon_generic_ref;
+
 typedef struct baryon {
-  uint64_t id;
+  uint64_t version;
+  qword_t id[4];
+  baryon_generic_ref b;
 } baryon;
+
+#define BARYON_GENERIC_FIELDS                                                  \
+  uint64_t version;                                                            \
+  qword_t id[4];                                                               \
+  uint64_t length;                                                             \
+  uint64_t ods_length;                                                         \
+  const char *ods;
+
+typedef struct baryon_generic_common {
+  BARYON_GENERIC_FIELDS
+} baryon_generic_common;
+
+#endif

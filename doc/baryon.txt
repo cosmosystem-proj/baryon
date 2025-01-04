@@ -17,7 +17,9 @@ The metadata includes:
     * A 64-bit version field.  The only reason the version field is 64 bits is
       because every other member of the field is 64 bits or a multiple thereof,
       so for alignment purposes it's going to be padded to 64 bits/8 bytes
-      anyway.  At present, 1 is the only recognized version number.
+      anyway, and it needs to be first so that implementations can count on its
+      position in the struct in case future versions change the order of other
+      members.  At present, 1 is the only recognized version number.
     * An ID (256-bit) to uniquely identify the baryon internally.  This ID is
       unique to the instance of the baryon, and is represented internally as an
       array of four sequential 64-bit unsigned integers.
@@ -29,9 +31,9 @@ The full layout of the inner layer is of course content-dependent, but it begins
 with the following common initial elements, always of the specified size and in
 the specified order, so that implementations can obtain the information they
 need to process the remainder:
+    * A 64-bit type version number, defined separately for each distinct type.
     * A 256-bit type ID, represented as an array of four sequential 64-bit
       unsigned integers.
-    * A 64-bit type version number, defined separately for each distinct type.
     * A 64-bit length field, specifying the size (in bytes) of the entire inner
       layer, including these common initial elements.
     * A 64-bit string length field, specifying the size (in bytes) of the
