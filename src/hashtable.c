@@ -1,6 +1,6 @@
 /*
  * Creator: Kurt M. Weber
- * Created on: 2025-01-04
+ * Created on: 2025-01-05
  *
  * This file is part of baryon, a component of the Cosmoverse.
  * Licensed under Hippocratic License with clauses:
@@ -8,11 +8,8 @@
  * See file LICENSE for full licensing informatin.
  */
 
-#include <quanta/include/types.h>
 #include <baryon.h>
 
-void baryon_register_class(uint64_t version, baryon_id_t class_id,
-                           size_t length, const char *ods) {
-
-  return;
+baryon_hash_t baryon_hash(baryon_id_t id) {
+  return (id[0] ^ id[1]) ^ (id[2] ^ id[3]);
 }

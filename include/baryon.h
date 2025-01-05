@@ -19,15 +19,19 @@ typedef baryon *baryon_ref;
 
 typedef void *baryon_generic_ref;
 
+typedef qword_t baryon_hash_t;
+
+typedef qword_t baryon_id_t[4];
+
 typedef struct baryon {
   uint64_t version;
-  qword_t id[4];
+  baryon_id_t id;
   baryon_generic_ref b;
 } baryon;
 
 #define BARYON_GENERIC_FIELDS                                                  \
   uint64_t version;                                                            \
-  qword_t id[4];                                                               \
+  baryon_id_t id;                                                              \
   size_t length;                                                               \
   size_t ods_length;                                                           \
   const char *ods;
