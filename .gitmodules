@@ -1,3 +1,6 @@
 [submodule "quanta"]
 	path = quanta
 	url = https://github.com/cosmosystem-proj/quanta.git
+[submodule "filament"]
+	path = filament
+	url = https://github.com/cosmosystem-proj/filament.git
